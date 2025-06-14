@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kegiatan Nailoong</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Patrick+Hand&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23654321"/><path d="M0 50L100 50M50 0L50 100" stroke="%23453218" stroke-width="1" opacity="0.2"/></svg>');
+            font-family: 'Patrick Hand', cursive;
+            color: #e6c229;
+            text-align: center;
+        }
+
+        .header {
+            padding: 40px 20px 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2 {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.8rem;
+            margin: 10px 0 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.5); }
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .artwork {
+            position: relative;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: rotate(var(--rotate));
+            transition: transform 0.3s;
+        }
+
+        .artwork:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 10;
+        }
+
+        .artwork::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0Q60 40 100 50Q60 60 50 100Q40 60 0 50Q40 40 50 0" fill="%234CAF50"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        .artwork img {
+            width: 100%;
+            height: auto;
+            border-radius: 3px;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+
+        /* Create sparkles */
+        .sparkle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            pointer-events: none;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkle-container" id="sparkleContainer"></div>
+    
+    <div class="header">
+        <h1>Kegiatan Nailoong</h1>
+        <h2>sebagai stiker yang kereeenn</h2>
+    </div>
+    
+    <div class="gallery">
+        <!-- Artwork items with different rotation angles -->
+        <div class="artwork" style="--rotate: -3deg">
+            <img src="https://placeholder.pics/svg/200x200/DEDEDE/555555/Artwork%201" alt="Nailoong Artwork 1">
+        </div>
+        <div class="artwork" style="--rotate: 2deg">
+            <img src="https://placeholder.pics/svg/200x200/DEDEDE/555555/Artwork%202" alt="Nailoong Artwork 2">
+        </div>
+        <div class="artwork" style="--rotate: -1deg">
+            <img src="https://placeholder.pics/svg/200x200/DEDEDE/555555/Artwork%203" alt="Nailoong Artwork 3">
+        </div>
+        <div class="artwork" style="--rotate: 4deg">
+            <img src="https://placeholder.pics/svg/200x200/DEDEDE/555555/Artwork%204" alt="Nailoong Artwork 4">
+        </div>
+        <div class="artwork" style="--rotate: -2deg">
+            <img src="https://placeholder.pics/svg/200x200/DEDEDE/555555/Artwork%205" alt="Nailoong Artwork 5">
+        </div>
+        <div class="artwork" style="--rotate: 3deg">
+            <img src="https://placeholder.pics/svg/200x200/DEDEDE/555555/Artwork%206" alt="Nailoong Artwork 6">
+        </div>
+        <div class="artwork" style="--rotate: -4deg">
+            <img src="https://placeholder.pics/svg/200x200/DEDEDE/555555/Artwork%207" alt="Nailoong Artwork 7">
+        </div>
+        <div class="artwork" style="--rotate: 1deg">
+            <img src="https://placeholder.pics/svg/200x200/DEDEDE/555555/Artwork%208" alt="Nailoong Artwork 8">
+        </div>
+    </div>
+
+    <script>
+        // Create sparkles dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('sparkleContainer');
+            const header = document.querySelector('.header');
+            
+            // Get header dimensions and position
+            const headerRect = header.getBoundingClientRect();
+            
+            // Create 20 sparkles in the header area
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                
+                // Position sparkles randomly within header
+                const left = Math.random() * headerRect.width;
+                const top = Math.random() * headerRect.height;
+                
+                sparkle.style.left = `${left}px`;
+                sparkle.style.top = `${top}px`;
+                
+                // Random delay for animation
+                sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                
+                // Random size
+                const size = 5 + Math.random() * 10;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                
+                container.appendChild(sparkle);
+            }
+        });
+    </script>
+</body>
+</html>
